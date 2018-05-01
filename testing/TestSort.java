@@ -21,13 +21,13 @@ public class TestSort {
         int expected = 2;
 
         int actual = Sort.findSmallest(input, 0);
-        assertEquals(expected, actual);
+        org.junit.Assert.assertEquals(expected, actual);
 
         String[] input2 = {"there", "are", "many", "pigs"};
         int expected2 = 2;
 
-        int actual2 = Sort.findSmallest(input2, 2);
-        assertEquals(expected2, actual2);
+        int actual2 = Sort.findSmallest(input, 2);
+        org.junit.Assert.assertEquals(expected2, actual2);
     }
 
     /** Test the Sort.swap method. */
@@ -39,6 +39,6 @@ public class TestSort {
         String[] expected = {"an", "have", "i", "egg"};
 
         Sort.swap(input, a, b);
-        assertArrayEquals(expected, input);
+        org.junit.Assert.assertArrayEquals(expected, input);
     }
 }
