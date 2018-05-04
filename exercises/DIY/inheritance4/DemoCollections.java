@@ -7,38 +7,66 @@ import java.util.HashMap;
 
 public class DemoCollections {
 
-	/** Returns a lower case version of the string with
-	  * all characters except letters removed. */
-	public static String cleanString(String s) {
-		return s.toLowerCase().replaceAll("[^a-z]", "");
-	}
+    /**
+     * Returns a lower case version of the string with
+     * all characters except letters removed.
+     */
+    public static String cleanString(String s) {
+        return s.toLowerCase().replaceAll("[^a-z]", "");
+    }
 
-	/** Gets a list of all words in the file. */
-	public static List<String> getWords(String inputFilename) {
-		return null;
-	}
+    /**
+     * Gets a list of all words in the file.
+     */
+    public static List<String> getWords(String inputFilename) {
+        List<String> words = new ArrayList<String>();
+        In in = new In(inputFilename);
+        while (!in.isEmpty()) {
+            String nextWord = cleanString(in.readString());
+            words.add(nextWord);
+        }
+        return words;
+    }
 
-	/** Returns the count of the number of unique words in words. */
-	public static int countUniqueWords(List<String> words) {
-		return 0;
-	}
+    /**
+     * Returns the count of the number of unique words in words.
+     */
+    public static int countUniqueWords(List<String> words) {
+        Set<String> wordSet = new HashSet<String>();
+        for (String ithWord : words) {
+            wordSet.add(ithWord);
+        }
+        return wordSet.size();
+    }
 
-	/** Returns a map (a.k.a. dictionary) that tracks the count of all specified
-	  * target words in words. */
-	public static Map<String, Integer> collectWordCount(List<String> words, List<String> targets) {
-		return null;
-	}
+    /**
+     * Returns a map (a.k.a. dictionary) that tracks the count of all specified
+     * target words in words.
+     */
+    public static Map<String, Integer> collectWordCount(List<String> words, List<String> targets) {
+        Map<String, Integer> counts = new HashMap<>();
+        for (String s : targets) {
+            counts.put(s, 0);
+        }
 
-	public static void main(String[] args) {
-		List<String> w = getWords("lotteryOfBabylon.txt");
-		System.out.println(w);
-		/*System.out.println(countUniqueWords(w));
+        for (String s : words) {
+            if (counts.containsKey(s)) {
+                counts.put(s, counts.get(s) + 1);
+            }
+        }
+        return counts;
+    }
+
+    public static void main(String[] args) {
+        List<String> w = getWords("lotteryOfBabylon.txt");
+        System.out.println(w);
+		System.out.println(countUniqueWords(w));
 
 		List<String> targets = new ArrayList<String>();
 		targets.add("lottery");
 		targets.add("the");
 		targets.add("babylon");
 
-		System.out.println(collectWordCount(w, targets));*/
-	}
+		System.out.println(collectWordCount(w, targets));
+    }
 } 
